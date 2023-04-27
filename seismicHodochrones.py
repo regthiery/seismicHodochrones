@@ -19,21 +19,10 @@ if __name__ == '__main__':
     filename = os.path.splitext(filename)[0]
     
     print ("Process script {}".format(filename))
-
-
-    hodochrones = Hodochrones()
-    hodochrones.readScript (filename)
-    hodochrones.analyzeData()
-    hodochrones.plotData()
-    
-    
-#     scene = Scene()
-#     scene.buildFromScript(filename)
-    
     
     try:
-#         scene.buildAnimation()
-        print("OK")
+        hodochrones = Hodochrones()
+        hodochrones.run (filename)
     except KeyboardInterrupt:
         print ("Program interrupted. Exiting...")    
         sys.exit(0)

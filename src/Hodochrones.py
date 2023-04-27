@@ -24,6 +24,12 @@ class Hodochrones:
         self.pxmax = None
         self.ptmin = None
         self.ptmax = None
+        self.xdirect = []
+        self.tdirect = []
+        self.xreflex = []
+        self.treflex = []
+        self.xrefrac = []
+        self.trefrac = []
         
     def readScript(self,filename):
         self.filename = filename
@@ -97,16 +103,22 @@ class Hodochrones:
                 point["x"] = x
                 point["t"] = t
                 self.directHodochrone.append (point)
+                self.xdirect . append(x)
+                self.tdirect . append(t)
             elif type == 'r':
                 point = {}
                 point["x"] = x
                 point["t"] = t
                 self.reflectedHodochrone.append (point)
+                self.xreflex . append(x)
+                self.treflex . append(t)
             elif type == 'c':
                 point = {}
                 point["x"] = x
                 point["t"] = t
                 self.refractedHodochrone.append (point)
+                self.xrefrac . append(x)
+                self.trefrac . append(t)
                 
     def plotData(self):
         x = []
@@ -157,10 +169,72 @@ class Hodochrones:
         plt.xlim(xmin,xmax)
         plt.ylim(tmin,tmax)            
 
+
+    def calculateParameters(self):
+        self.slopedirect, self.y0direct = np.polyfit(self.xdirect,self.tdirect,1)         
+        self.sloperefrac, self.y0refrac = np.polyfit(self.xrefrac,self.trefrac,1)        
+        self.v1 = 1000 / self.slopedirect 
+        self.v2 = 1000 / self.sloperefrac
+        self.ic = math.asin (self.v1/self.v2) * 180 / math.pi
+        self.h = self.y0refrac * 0.5e-3 * self.v1 * self.v2 / np.sqrt (self.v2**2 - self.v1**2 )
+        
+            # tangence onde réfléchie et onde conique
+        self.xt = 2 * self.h * self.v1 / np.sqrt (self.v2**2 - self.v1**2 )
+        
+            # intersection onde conique et onde directe
+        self.xb =  2 * self.h * np.sqrt (self.v2 + self.v1) / np.sqrt (self.v2 - self.v1)
+        
+    def calculateHodochrones(self):
+        self.xx = np.linspace (self.pxmin, self.pxmax, 100)   
+        self.t1 = self.xx / self.v1
+        self.t2 = np.sqrt ( self.xx**2 + 4 * self.h**2 ) / self.v1
+        self.t3 = 2 * self.h * np.sqrt (self.v2**2 - self.v1**2) / (self.v1 * self.v2) + self.xx / self.v2 
+        self.t1 *= 1000
+        self.t2 *= 1000
+        self.t3 *= 1000
+        
+    def plotHodochrones(self):
+        plt.plot(self.xx,self.t1, '-', color='red')
+        plt.plot(self.xx,self.t2, '-', color='green')
+        plt.plot(self.xx,self.t3, '-', color='blue')
+
+    def showDiagram(self):            
+        filepath = self.plotsFolderPath+self.filename+'.png'
+        if os.path.exists(filepath):
+            os.remove(filepath)
         plt.savefig(self.plotsFolderPath+self.filename+'.png', dpi=300)
         plt.show()
-plt.show()
+
+    def printData(self):
+        print ("Onde directe")
+        for point in self.directHodochrone:
+            print("x = {:.2f} m, t = {:.2f} ms".format(point["x"],point["t"]))
+        print ("Onde réfléchie")
+        for point in self.reflectedHodochrone:
+            print("x = {:.2f} m, t = {:.2f} ms".format(point["x"],point["t"]))
+        print ("Onde conique")
+        for point in self.refractedHodochrone:
+            print("x = {:.2f} m, t = {:.2f} ms".format(point["x"],point["t"]))
+            
+            
         
+    def printParameters(self):    
+        print("Vitesse v1                              = {:.2f} m/s".format(self.v1))
+        print("Vitesse v2                              = {:.2f} m/s".format(self.v2))
+        print("Profondeur réflecteur h                 = {:.2f} m".format(self.h))
+        print("Angle critique ic                       = {:.2f} °".format(self.ic))
+        print("Tangence ondes réfléchie et réfractée   = {:.2f} m".format(self.xt))
+        print("Intersection ondes directe et réfléchie = {:.2f} m".format(self.xb))
         
+    def run(self,filename):
+        self.readScript (filename)
+        self.analyzeData()
+        self.calculateParameters()
+        self.printData()
+        self.printParameters()
+        self.calculateHodochrones()
+        self.plotHodochrones()
+        self.plotData()
+        self.showDiagram()
         
             
