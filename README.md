@@ -6,7 +6,7 @@ Ce programme Python permet de tracer des hodochrones d'ondes sismiques et de mod
 
 Ce programme peut être utilisé à des fins éducatives pour enseigner la
 méthode sismique dromochronique de sismique réfraction qui
-permet d'analysef les temps d'arrivées des ondes directes
+permet d'analyser les temps d'arrivées des ondes directes
 et des ondes réfractées critiques.
 
 La version actuelle ne s'applique qu'au modèle à deux couches horizontales
