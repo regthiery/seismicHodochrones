@@ -18,7 +18,6 @@ ainsi que de calculer la profondeur h du réflecteur.
 
 Le programme calcule les hodochrones théoriques des ondes directes, réfléchies et réfractées critiques.
 
-
 ## Prérequis
 
 - Python 3.x
@@ -28,22 +27,18 @@ Le programme calcule les hodochrones théoriques des ondes directes, réfléchie
 
 1. Clonez le dépôt Git :
 
-git clone https://github.com/regthiery/SeismicHodochrones.git
-
+git clone <https://github.com/regthiery/SeismicHodochrones.git>
 2. Installez les dépendances :
 
 pip install -r requirements.txt
 
-
 ## Utilisation
 
-1. Écrivez votre propre script ou utilisez l'un des scripts fournis dans le dossier `scripts/`.
-
-2. Exécutez le programme :
+01. Écrivez votre propre script ou utilisez l'un des scripts fournis dans le dossier `scripts/`.
+02. Exécutez le programme :
 
 python3 SeismicHodochrones.py nom_du_script
-
-3. Les résultats de la modélisation seront enregistrés dans le dossier `images/`.
+03. Les résultats de la modélisation seront enregistrés dans le dossier `images/`.
 
 ## Demonstration
 
@@ -51,7 +46,7 @@ Image de démonstration produite par le programme: hodochrones des ondes directe
 
 ![Image de démonstration avec réflexion et réfraction des ondes sur interface à partir d'une source ponctuelle](image.png)
 
-Consulter aussi https://youtu.be/2x7rniZIDFE
+Consulter aussi <https://youtu.be/2x7rniZIDFE>
 
 ## Auteurs
 
