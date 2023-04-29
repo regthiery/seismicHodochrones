@@ -1,13 +1,23 @@
+
+# Les coordonnées du diagramme dromochronique
+
 xmin	0
 xmax 100
 tmin 0
 tmax 100
+
+# Les données d'entrée
+
+# Pour l'onde directe
+#	x(m)	t(ms)		type d'onde
 
 
  0		0	d
  10		16	d
  20		31	d
  25		40	d
+
+# Pour l'onde conique
  
  40		53	c
  50		58	c
