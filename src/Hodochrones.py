@@ -206,25 +206,29 @@ class Hodochrones:
         plt.show()
 
     def printData(self):
+        i = 1 
         print ("Onde directe")
         for point in self.directHodochrone:
-            print("x = {:.2f} m, t = {:.2f} ms".format(point["x"],point["t"]))
+            print("{:>4}) x = {:>6.2f} m, t = {:>6.2f} ms".format(i, point["x"],point["t"]))
+            i+=1
         print ("Onde réfléchie")
         for point in self.reflectedHodochrone:
-            print("x = {:.2f} m, t = {:.2f} ms".format(point["x"],point["t"]))
+            print("{:>4}) x = {:>6.2f} m, t = {:>6.2f} ms".format(i, point["x"],point["t"]))
+            i+=1
         print ("Onde conique")
         for point in self.refractedHodochrone:
-            print("x = {:.2f} m, t = {:.2f} ms".format(point["x"],point["t"]))
+            print("{:>4}) x = {:>6.2f} m, t = {:>6.2f} ms".format(i, point["x"],point["t"]))
+            i+=1
             
             
         
     def printParameters(self):    
-        print("Vitesse v1                              = {:.2f} m/s".format(self.v1))
-        print("Vitesse v2                              = {:.2f} m/s".format(self.v2))
-        print("Profondeur réflecteur h                 = {:.2f} m".format(self.h))
-        print("Angle critique ic                       = {:.2f} °".format(self.ic))
-        print("Tangence ondes réfléchie et réfractée   = {:.2f} m".format(self.xt))
-        print("Intersection ondes directe et réfléchie = {:.2f} m".format(self.xb))
+        print("Vitesse v1                              = {:>8.2f} m/s".format(self.v1))
+        print("Vitesse v2                              = {:>8.2f} m/s".format(self.v2))
+        print("Profondeur réflecteur h                 = {:>8.2f} m".format(self.h))
+        print("Angle critique ic                       = {:>8.2f} °".format(self.ic))
+        print("Tangence ondes réfléchie et réfractée   = {:>8.2f} m".format(self.xt))
+        print("Intersection ondes directe et réfléchie = {:>8.2f} m".format(self.xb))
         
     def run(self,filename):
         self.readScript (filename)

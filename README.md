@@ -1,4 +1,4 @@
-# Programme de tracé d'hodochrones et de modélisation de la structure du sous-sol
+# Programme de tracé d'hodochrones et de modélisation de la structure du sous-sol par sismique réfraction
 
 Ce programme Python permet de tracer des hodochrones d'ondes sismiques et de modéliser la structure du sous-sol en fonction des données d'entrée.
 
