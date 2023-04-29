@@ -28,6 +28,7 @@ Le programme calcule les hodochrones théoriques des ondes directes, réfléchie
 1. Clonez le dépôt Git :
 
 `git clone <https://github.com/regthiery/SeismicHodochrones.git>`
+
 2. Installez les dépendances :
 
 `pip install -r requirements.txt`
