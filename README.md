@@ -37,7 +37,7 @@ Le programme calcule les hodochrones théoriques des ondes directes, réfléchie
 01. Écrivez votre propre script ou utilisez l'un des scripts fournis dans le dossier `scripts/`.
 02. Exécutez le programme :
 
-`python3 SeismicHodochrones.py nom_du_script``
+`python3 SeismicHodochrones.py nom_du_script`
 03. Les résultats de la modélisation seront enregistrés dans le dossier `images/`.
 
 ## Demonstration
